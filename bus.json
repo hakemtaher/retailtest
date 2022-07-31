@@ -1,0 +1,18 @@
+[
+    {
+        "name": "seleniumdemo",
+        "currency_id": "141",
+        "country": "Bahrain",
+        "state": "Manama",
+        "city": "Manama",
+        "zip_code": 0,
+        "landmark": "BH",
+        "time_zone": "Asia/Bahrain",
+        "first_name": "demo1",
+        "username": "seleniumdemo",
+        "password": 123456,
+        "confirm_password": 123456,
+        "package_id": 1,
+        "paid_via": "offline"
+    }
+]
