@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 
 
 def loginfo(driver, username, password):
+    
+    driver.get("https://svretailmodule.smartqr.app/login")
     driver.execute_script("window.localStorage.setItem('tour_end', 'yes');")
     driver.execute_script(
         "window.localStorage.setItem('upos_app_tour_shown', 'true');")
