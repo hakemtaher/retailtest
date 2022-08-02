@@ -5,6 +5,7 @@ import datetime
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support import expected_conditions as EC
+import update_data
 
 def addBusiness(driver,jsonFile):
     f = open(jsonFile, "r")
@@ -41,9 +42,10 @@ def addBusiness(driver,jsonFile):
         ts = ct.timestamp()
         ts = int(ts)
         ts = str(ts)
-        ts = i["username"] + ts
+        i["name"] += ts        
+        i["username"] += ts
         # i = data['business_details']
-        Business_name_box.send_keys(ts)
+        Business_name_box.send_keys(i["name"])
         Select_currency_box.select_by_value(i["currency_id"])
         Country_box.send_keys(i["country"])
         State_box.send_keys(i["state"])
@@ -52,7 +54,7 @@ def addBusiness(driver,jsonFile):
         Landmark_box.send_keys(i["landmark"])
         timezone_box.select_by_value(i["time_zone"])
         Firstname_box.send_keys(i["first_name"])
-        Username_box.send_keys(ts)
+        Username_box.send_keys(i["username"])
         Password_box.send_keys(i["password"])
         Confirm_box.send_keys(i["confirm_password"])
         Package_box.send_keys(i["package_id"])
@@ -65,6 +67,7 @@ def addBusiness(driver,jsonFile):
                 (By.XPATH, '//*[@id="toast-container"]/div/div')
             )
         )
+        update_data.write_json(i)
     #driver.get("https://svretailmodule.smartqr.app/superadmin/business")
     # driver.find_element(By.XPATH, '//*[@id="superadmin_business_table"]/tbody/tr[1]/td[11]/button').click()
     link = driver.find_element(By.XPATH, '//*[@id="superadmin_business_table"]/tbody/tr[1]/td[11]/button').get_attribute('data-href')
@@ -79,4 +82,4 @@ def addBusiness(driver,jsonFile):
     Select(driver.find_element(By.ID, 'paid_via')).select_by_value('offline')
     driver.find_element(By.XPATH, '//*[@id="superadmin_add_subscription"]/div[3]/button[1]').click()
 
-    return ts
+    #return ts

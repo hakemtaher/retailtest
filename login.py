@@ -19,3 +19,8 @@ def loginfo(driver, username, password):
     password_box.send_keys(password)
     login_button = driver.find_element(By.CLASS_NAME, 'btn-login')
     login_button.click()
+
+def logout(driver):
+    driver.get("https://svretailmodule.smartqr.app/home")
+    driver.find_element(By.XPATH, '/html/body/div[2]/div/div/header/nav/div/ul/li[2]/a').click()
+    driver.find_element(By.XPATH, '/html/body/div[2]/div/div/header/nav/div/ul/li[2]/ul/li[2]/div[2]/a').click()
