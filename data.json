@@ -108,7 +108,7 @@
             "confirm_password": 123456,
             "package_id": 1,
             "paid_via": "offline",
-            "CURRENCY_PRECISION": 3,
+            "CURRENCY_PRECISION": "3",
             "STOCK_ACC": "avco",
             "profit_percent": 50,
             "inline_tax": "enabled",

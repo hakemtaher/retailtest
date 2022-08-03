@@ -41,11 +41,13 @@ vat_data = json.loads(driver.find_element(By.XPATH, '/html/body/pre').text)
 vat_id = vat_data["data"]["id"]
 
 driver.get(os.environ["APP_URL"] + "business/settings")
-Select(driver.find_element(By.XPATH, '//*[@id="accounting_method"]')).select_by_value('avco')
-Select(driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[1]/div/div/div[2]/div[1]/div[4]/div/div/div/select')).select_by_value('3')
-
-driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[1]/div/div/div[1]/div/a[2]').click()
-driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[1]/div/div/div[2]/div[2]/div/div[6]/div/div/label/div').click()
+driver.find_element(By.XPATH, '//*[@id="default_profit_percent"]').send_keys(last_element['profit_percent'])
+Select(driver.find_element(By.XPATH, '//*[@id="accounting_method"]')).select_by_value(last_element['STOCK_ACC'])
+Select(driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[1]/div/div/div[2]/div[1]/div[4]/div/div/div/select')).select_by_value(last_element['CURRENCY_PRECISION'])
+if (last_element['inline_tax'] == 'enabled'):
+    driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[1]/div/div/div[1]/div/a[2]').click()
+    if not (driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[1]/div/div/div[2]/div[2]/div/div[6]/div/div/label/div/input').get_attribute('checked')):
+        driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[1]/div/div/div[2]/div[2]/div/div[6]/div/div/label/div').click()
 
 
 driver.find_element(By.XPATH, '//*[@id="bussiness_edit_form"]/div[2]/div/button').click()
